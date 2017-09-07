@@ -1,0 +1,24 @@
+---
+title: "Map Assignment"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(magrittr)
+library(leaflet)
+```
+
+This is the week 2 assignment of the Coursera course [Developing Data Products](https://www.coursera.org/learn/data-products/home/welcome).
+
+
+## Date of last rendering: `r date()`.
+
+
+Map centered in Zurich:
+
+```{r}
+leaflet() %>%
+  setView(lng = 8.5363771, lat = 47.3751551, zoom = 12) %>%
+  addTiles()
+```
