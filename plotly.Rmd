@@ -1,6 +1,7 @@
 ---
 title: "Plotly Assignment"
-output: html_document
+date: September 14, 2017
+output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
@@ -10,12 +11,15 @@ library(plotly)
 library(data.table)
 ```
 
+## Assignment
+
+
 This is the week 3 assignment of the Coursera course [Developing Data Products](https://www.coursera.org/learn/data-products/home/welcome).
 
 
-## Date of last rendering: `r date()`.
+The next slides contain the code and the output for a barplot of the dataset sleep (from the datasets package) which contains data showing the effect of two soporific drugs (increase in hours of sleep compared to control) on 10 patients. The barplot shows the increase/decrease in sleep for each student.
 
-Barplot of dataset sleep (from the datasets package) which contains data showing the effect of two soporific drugs (increase in hours of sleep compared to control) on 10 patients. The barplot shows the increase/decrease in sleep for each student.
+## R code
 
 ```{r}
 sleepDT <- data.table(sleep)
@@ -24,11 +28,17 @@ drug2 <- sleepDT[group == 2, .(extraG2=extra, ID)]
 allData <- drug1[drug2, on="ID"]
 p <- plot_ly(allData, x = ~ID, y = ~extraG1, type = 'bar',
              name = 'Drug 1', marker = list(color = 'blue')) %>%
-  add_trace(y = ~extraG2, name = 'Drug 2', marker = list(color = 'green')) %>%
+  add_trace(y = ~extraG2, name = 'Drug 2',
+            marker = list(color = 'green')) %>%
   layout(title = "Extra hours of sleep",
          xaxis = list(title = "Student ID"),
-         yaxis = list(title = 'extra hours of sleep'), barmode = 'group')
-p
+         yaxis = list(title = 'extra hours of sleep'),
+         barmode = 'group')
 ```
 
+## Output
+
+```{r plot, echo = FALSE}
+p
+```
 
